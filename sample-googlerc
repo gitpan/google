@@ -1,0 +1,13 @@
+[google]
+key=yourLongKeyGoesRightHere
+safe-mode=1
+max-results=10
+starts-at=0
+lr=en_US
+snippet=0
+
+[client]
+; if you have snippets enabled, the results will
+; wrapped after certain characters
+wrap-at=70
+

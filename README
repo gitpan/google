@@ -1,0 +1,124 @@
+NAME
+    google - command-line Google interface
+
+SYNOPSIS
+      google [options] keyword(s)
+      google [options] keyword(s) site:<URL>
+      google [options] link:<URL>
+      google [options] related:<URL>
+      google [options] info:<URL>
+      google --help
+
+OPTIONS
+    Following options can be specified either in the command line, or in
+    google startup file found at ~/.googlerc
+
+    --help
+        displays the list of available options and exists
+
+    --max-results
+        number of results returned in the result set
+
+    --starts-at
+        where should the result set start
+
+    --safe-mode
+        filter out offensive and adult content
+
+    --snippet
+        display brief snippet of the resource
+
+    --lr
+        language restrictions
+
+    --ie
+        input encoding. Default is utf-8
+
+    --oe
+        output encoding. Default is utf-8
+
+    --man
+        display full manual of the client
+
+DESCRIPTION
+    google is a command-line interface to Google Search. It uses Aaron
+    Straup Cope's Net::Google library, which in turn, is an interface to
+    Google's SOAP API.
+
+    To be able to use this tool, you first need to create an account with
+    Google. It is free. Visit http://www.google.com/apis/ for details. After
+    creating your account successfully, you will be provided with a key to
+    use this tool.
+
+INSTALLATION
+      perl Makefile.PL
+      make
+      make install
+
+    The above set of commands will install the library to your sitebin
+    folder. It is usually /usr/bin/ in some *nix machines. If you do not
+    have write access to this folder, you can alternatively install in your
+    own ~/bin directory:
+
+      perl Makefile.PL INSTALLSCRIPT=~/bin
+      make
+      make install
+
+USING google
+    Every time you use google to search the Web, you should provide your key
+    with "--key" option. I know, it gets pretty tedious in no time. That's
+    why we added support for default options file.
+
+    google searches for a file called .google or .googlerc in your home
+    directory. If it can't find any, it looks for those files in your
+    current directory as well as in the directory google was installed in.
+
+      [google]
+      key=yourLongKeyGoesHere
+
+    You can find a more verbose option file in the google distribution
+    folder. Options provided in the command line will override the ones set
+    in the options file.
+
+EXAMPLES
+      google mod_perl
+
+    returns first 10 (unless you overrode it in your options file) results
+    for keyword "mod_perl".
+
+      google --max-results=5 --snippet mod_perl
+
+    similar to the first example, but returns first 5 results with snippets.
+
+      google mod_perl site:apache.org
+
+    returns first 10 results for mod_perl from apache.org
+
+      google info:perl.com
+
+    returns brief information about the resource
+
+      google related:perl.com
+
+    returns related resources for perl.com
+
+      google link:cpan.org
+
+    returns first 10 resources that have links to cpan.org.
+
+TODO
+    Support for Google's spell checker, as well as Google cache
+
+COPYRIGHT
+    Copyright (C) 2003 Sherzod B. Ruzmetov. google is free software. You can
+    modify and/or redistribute it under GNU/Artistic license.
+
+AUTHOR
+    Sherzod B. Ruzmetov <sherzodr@handalak.com>
+
+BUGS
+    For bugs, feed backs and suggestions: <sherzodr@cpan.com>
+
+SEE ALSO
+    http://www.google.com/apis, Net::Google, Net::Google::Search
+
